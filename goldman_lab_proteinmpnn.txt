@@ -7,6 +7,7 @@ bash Miniconda3-latest-Linux-x86_64.sh
 #Check with conda --version
 
 
+#not necessary unless you want to copy into envs folder later
 2. 1. Start by making sure in correct folder ex: head/goldman_lab and then create folder env -> head/goldman_lab/env
 cd ~ 
 cd goldman_lab
@@ -16,6 +17,8 @@ cd env
 3. Create environment in env dir
 conda create -n proteinmpnn python=3.10 -y
 conda activate proteinmpnn
+#will create env in miniconda so call with activate proteinmpnn
+
 
 4. Install dependencies
 conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
