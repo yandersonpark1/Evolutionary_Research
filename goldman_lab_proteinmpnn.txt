@@ -1,0 +1,26 @@
+# for this sake goldman_lab is considered to be root of the project folder; you can name it whatever you want
+
+1. Make sure you have conda downloaded; miniconda3 will work 
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+#Accept default 
+#Check with conda --version
+
+
+2. 1. Start by making sure in correct folder ex: head/goldman_lab and then create folder env -> head/goldman_lab/env
+cd ~ 
+cd goldman_lab
+cd env
+
+
+3. Create environment in env dir
+conda create -n proteinmpnn python=3.10 -y
+conda activate proteinmpnn
+
+4. Install dependencies
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+
+5. Create software folder for cloned repo 
+cd ~
+cd goldman_lab
+mkdir software
