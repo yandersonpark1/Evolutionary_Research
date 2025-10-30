@@ -27,3 +27,6 @@ conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 cd ~
 cd goldman_lab
 mkdir software
+git clone https://github.com/dauparas/ProteinMPNN.git
+
+6. Set up Folder Structure and Slurm Scripting 
