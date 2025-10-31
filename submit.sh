@@ -5,7 +5,7 @@
 #SBATCH --mem=16G
 #SBATCH --time=04:00:00
 #SBATCH --cpus-per-task=8
-#SBATCH --partition=standard
+#SBATCH --partition=8core
 #SBATCH --nodes=1
 
 source ~/.bashrc
