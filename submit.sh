@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=proteinmpnn
 #SBATCH --output=/goldman_lab/mpnn/logs/pdb#.out
-#SBATCH --mem=16G
-#SBATCH --time=04:00:00
+#SBATCH --error=/goldman_lab/mpnn/logs/error#.err
+#SBATCH --mem=64G
 #SBATCH --cpus-per-task=8
 #SBATCH --partition=8core
 #SBATCH --nodes=1
