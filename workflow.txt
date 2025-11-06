@@ -1,0 +1,7 @@
+#Basic plan and Log for Evolutionary Research 
+
+1. Need to compile all pdbs to resequence on ProteinMPNN 
+
+2. Compile groups of superfamilies at time and run on HPC 
+
+3. While running compile another full CATH superfamily
