@@ -1,0 +1,9 @@
+3.10.50.20: 
+8 PDBs
+2 PDBs > 3.0 angstroms resolution 
+
+1e44 - 2.40 angstroms 
+1jch - 3.02 angstroms 
+2b5u - 2.30 angstroms 
+3eip - 1.80 angstroms 
+4udm - 2.96 angstroms 
