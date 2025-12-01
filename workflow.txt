@@ -5,3 +5,10 @@
 2. Compile groups of superfamilies at time and run on HPC 
 
 3. While running compile another full CATH superfamily
+
+-----------------------------------------------------------------------
+In terminal after compiling
+scp -r Evolutionary_Research/CATH_db/{homology_family_name} ypark3@newhpc.hpc.oberlin.edu:
+
+Compiled PDBS: 
+3.10.50.20 
