@@ -13,7 +13,7 @@ source ~/.bashrc
 conda activate proteinmpnn
 
 python goldman_lab/software/ProteinMPNN/protein_mpnn_run.py  \
-    --pdb_path \
-    --out_folder \
+    --pdb_path {folder_root_of_pdbs]/{homology_pdb_name} \
+    --out_folder {folder_root_of_pdbs}/{homology_pdb_name}/output \
     --num_seq_per_target 10 \
     --batch_size 1 \
