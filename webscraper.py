@@ -96,4 +96,6 @@ if __name__ == "__main__":
 
 ''' Need to get pdb file name from system args'''
 
-''' 1. Need to take pdb '''
+''' 1. Need to take create pdb links for each homology'''
+
+''' 2. Webscraper to search for pbd files from '''
