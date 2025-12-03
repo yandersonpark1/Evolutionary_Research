@@ -1,0 +1,32 @@
+#Basic plan and Log for Evolutionary Research 
+
+1. Need to compile all pdbs to resequence on ProteinMPNN 
+
+2. Compile groups of superfamilies at time and run on HPC 
+
+3. While running compile another full CATH superfamily
+
+-----------------------------------------------------------------------
+Compiled PDBS: 
+- 3.10.50.20 
+- 3.10.50.30
+
+
+-----------------------------------------------------------------------
+
+1. Start by moving compiled folder into Evolutionary folder
+# in mac terminal 
+scp -r Evolutionary_Research/CATH_db/{homology_family_name} ypark3@newhpc.hpc.oberlin.edu:
+
+2. move files into Evolutionary folder
+mv {homology_family_name} Evolutionary
+
+3. Create folders for each pdb file in each homology_family_name
+cp ~/create_pdb_folders.sh ~/Evolutionary/{homology_family_name}
+cp ~/submit.sh ~/Evolutionary/{homology_family_name}
+cd ~
+cd Evolutionary/{homology_family_name}
+./create_pdb_folders.sh
+
+
+
