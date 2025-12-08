@@ -40,8 +40,10 @@ def output_pdb_contents(pdb_contents, out_dir, pdb_id, chain):
         print(f'File could not be written: {e}')
         
     return out_dir
-        
-def clean_for_chain(path_location, chain): 
+
+
+''' Writes pdb for all chains in the pdb file'''
+def clean_for_all_chain(path_location): 
     filtered = []
     
     writing = False
@@ -75,6 +77,87 @@ def clean_for_chain(path_location, chain):
         print(f'Successfully rewrote file at {path_location}')
     except Exception as e: 
         print(f'Could not rewrite file at {path_location}: {e}')
+        
+    return path_location
+
+
+'''Looks for specific chain in pdb file'''
+def clean_specific_chain(pdb_chains_location, chain): 
+    filtered = []
+    writing = False
+    
+    try: 
+        with open(pdb_chains_location, "r", encoding="utf-8") as f:
+            for line in f:
+                parts = line.split()
+                if parts and parts[4] == chain:
+                    filtered.append(line)
+                    writing = True
+                    
+                
+                elif parts and parts[0] == "TER": 
+                    filtered.append(line)
+                    writing = False
+                     
+                
+                elif writing: 
+                    filtered.append(line)
+                    
+                    
+            print(f'Successfully opened file at {pdb_chains_location}')
+    
+    except Exception as e: 
+        print(f'Could not access file at {pdb_chains_location}')
+        
+    try: 
+        with open(pdb_chains_location, "w", encoding="utf-8") as out:
+            out.writelines(filtered)
+        print(f'Successfully rewrote file for chain {chain} at {pdb_chains_location}')
+    except Exception as e: 
+        print(f'Could not rewrite file at {pdb_chains_location} for chain {chain}: {e}')
+    
+    return pdb_chains_location
+
+'''Looks for specific pdb chain: given as x:y includinhg both x and y'''
+def clean_for_seq(pdb_chain_specific_location, seq_range): 
+    start = seq_range.partition(':')[0]
+    end = seq_range.partition(':')[2]
+    print(f'You are looking for seq range: {start} to {end}' )
+    
+    filtered = []
+    
+    try: 
+        with open(pdb_chain_specific_location, "r", encoding="utf-8") as f:
+            for line in f:
+                parts = line.split()
+                if parts and parts[5] == start:
+                    filtered.append(line)
+                    writing = True
+                    
+                
+                elif parts and parts[5] == end: 
+                    filtered.append(line)
+                    writing = False
+                     
+                
+                elif writing: 
+                    filtered.append(line)
+                    
+                    
+            print(f'Successfully opened file at {pdb_chain_specific_location}')
+    
+    except Exception as e: 
+        print(f'Could not access file at {pdb_chain_specific_location}')
+
+    try: 
+        with open(pdb_chain_specific_location, "w", encoding="utf-8") as out:
+            out.writelines(filtered)
+        print(f'Successfully rewrote file for seq range {start} to {end} at {pdb_chain_specific_location}')
+    except Exception as e: 
+        print(f'Could not rewrite file at {pdb_chain_specific_location} for seq range {start} to {end}: {e}')
+    
+    return pdb_chain_specific_location
+    
 
 
 def main(): 
@@ -105,6 +188,8 @@ def main():
     
     #looking for chain number
     
+    seq_range = str(sys.argv[4])
+    
     
     print(f'You are looking for chain {chain} on pdb file {pdb_id}.')
     
@@ -114,10 +199,15 @@ def main():
     '''Output the pdb_contents from download_pdb to the correct directory'''
     path_location = output_pdb_contents(pdb_contents, out_dir, pdb_id, chain)
     
-    clean_for_chain(path_location, chain)
+    '''cleans pdb files for chains only'''
+    pdb_chains_location = clean_for_all_chain(path_location)
     
+    pdb_chain_specific_location = clean_specific_chain(pdb_chains_location, chain)
     
+    final_pdb_file_path = clean_for_seq(pdb_chain_specific_location, seq_range)
     
+    return final_pdb_file_path
+
     
     
     
