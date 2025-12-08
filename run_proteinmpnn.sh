@@ -1,14 +1,12 @@
 #!/bin/bash 
 
 #SBATCH --job-name=proteinmpnn
-#SBATCH --output=/goldman_lab/mpnn/logs/pdb#.out
-#SBATCH --error=/goldman_lab/mpnn/logs/error#.err
+#SBATCH --error=error.err
 #SBATCH --mem=64G
 #SBATCH --cpus-per-task=8
 #SBATCH --partition=8core
 #SBATCH --nodes=1
-#SBATCH --mail-type=FAIL
-#SBATCH --mail-user=ypark3@oberlin.edu
+
 
 source ~/.bashrc
 
