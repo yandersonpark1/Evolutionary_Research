@@ -124,36 +124,65 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
     end = seq_range.partition(':')[2]
     print(f'You are looking for seq range: {start} to {end}' )
     
+    
     filtered = []
+    writing = False
+    true_idx = []
+    correct_idx = True
+    last_idx = 0
     
     try: 
         with open(pdb_chain_specific_location, "r", encoding="utf-8") as f:
+            
             for line in f:
                 parts = line.split()
-                if parts and parts[5] == start:
-                    filtered.append(line)
-                    writing = True
-                    
                 
-                elif parts and parts[5] == end: 
+                # check to make sure there is at least 5 elemnents in the list if not will crash while reading file
+                # cannot access index element 5 if not present -> will throw index out of error 
+                if parts and parts[0] == "TER": 
                     filtered.append(line)
                     writing = False
+                    if int(last_idx) < int(end): 
+                        true_idx.append(last_idx)
+                        correct_idx = False
+                    else: 
+                        true_idx.append(last_idx)
+                
+                elif parts and parts[5] and parts[5] == start:
+                    filtered.append(line)
+                    writing = True
+                    if len(true_idx) == 0: 
+                        if int(parts[5]) < int(start): 
+                            true_idx.append(parts[5])
+                            correct_idx = False
+                        else: 
+                            true_idx.append(parts[5])
+                    
+                
+                elif parts and parts[5] and parts[5] == end: 
+                    filtered.append(line)
+                    writing = False        
                      
                 
                 elif writing: 
                     filtered.append(line)
+                    last_idx = parts[5]
                     
+                    
+                
                     
             print(f'Successfully opened file at {pdb_chain_specific_location}')
     
     except Exception as e: 
-        print(f'Could not access file at {pdb_chain_specific_location}')
+        print(f'Could not access file at {pdb_chain_specific_location}: {e}')
 
     try: 
         with open(pdb_chain_specific_location, "w", encoding="utf-8") as out:
             out.writelines(filtered)
-        print(f'Successfully rewrote file for seq range {start} to {end} at {pdb_chain_specific_location}')
+        
+        print(f'Successfully rewrote file for seq range {true_idx[0]} to {true_idx[1]} at {pdb_chain_specific_location}')
     except Exception as e: 
+
         print(f'Could not rewrite file at {pdb_chain_specific_location} for seq range {start} to {end}: {e}')
     
     return pdb_chain_specific_location
