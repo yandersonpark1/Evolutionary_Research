@@ -95,7 +95,7 @@ def clean_specific_chain(pdb_chains_location, chain):
                     writing = True
                     
                 
-                elif parts and parts[0] == "TER": 
+                elif parts and parts[0] == "TER" and parts[3] == chain: 
                     filtered.append(line)
                     writing = False
                      
@@ -136,12 +136,17 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
             
             for line in f:
                 parts = line.split()
-                
+               
                 # check to make sure there is at least 5 elemnents in the list if not will crash while reading file
                 # cannot access index element 5 if not present -> will throw index out of error 
-                if parts and parts[0] == "TER": 
+                if (parts) and (parts[0] == "TER"):
+                    if int(parts[4]) > int(end): 
+                        true_idx.append(last_idx)
+                        break
+                    
                     filtered.append(line)
                     writing = False
+                    
                     if int(last_idx) < int(end): 
                         true_idx.append(last_idx)
                         correct_idx = False
@@ -189,8 +194,8 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
             print(f'Successfully rewrote file for seq range {true_idx[0]} to {true_idx[1]} at {pdb_chain_specific_location}')
         else: 
             print(f'Successfully rewrote file. Invalid initial range, actual range is {true_idx[0]} to {true_idx[1]} at {pdb_chain_specific_location}')
+    
     except Exception as e: 
-
         print(f'Could not rewrite file at {pdb_chain_specific_location} for seq range {start} to {end}: {e}')
     
     return pdb_chain_specific_location
