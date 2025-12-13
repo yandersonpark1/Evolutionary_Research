@@ -148,28 +148,33 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
                     else: 
                         true_idx.append(last_idx)
                 
+                
+                #check to make sure starting residue if not start at first residue number 
+                elif parts and len(true_idx) == 0: 
+                    
+                    if int(parts[5]) > int(start):
+                        filtered.append(line)
+                        writing = True
+                        true_idx.append(parts[5])
+                        correct_idx = False
+                    
+                    
                 elif parts and parts[5] and parts[5] == start:
                     filtered.append(line)
                     writing = True
-                    if len(true_idx) == 0: 
-                        if int(parts[5]) < int(start): 
-                            true_idx.append(parts[5])
-                            correct_idx = False
-                        else: 
-                            true_idx.append(parts[5])
+                    if len(true_idx) == 0:
+                        true_idx.append(parts[5])
                     
                 
                 elif parts and parts[5] and parts[5] == end: 
                     filtered.append(line)
                     writing = False        
-                     
+
                 
                 elif writing: 
                     filtered.append(line)
                     last_idx = parts[5]
                     
-                    
-                
                     
             print(f'Successfully opened file at {pdb_chain_specific_location}')
     
@@ -180,7 +185,10 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
         with open(pdb_chain_specific_location, "w", encoding="utf-8") as out:
             out.writelines(filtered)
         
-        print(f'Successfully rewrote file for seq range {true_idx[0]} to {true_idx[1]} at {pdb_chain_specific_location}')
+        if correct_idx: 
+            print(f'Successfully rewrote file for seq range {true_idx[0]} to {true_idx[1]} at {pdb_chain_specific_location}')
+        else: 
+            print(f'Successfully rewrote file. Invalid initial range, actual range is {true_idx[0]} to {true_idx[1]} at {pdb_chain_specific_location}')
     except Exception as e: 
 
         print(f'Could not rewrite file at {pdb_chain_specific_location} for seq range {start} to {end}: {e}')
