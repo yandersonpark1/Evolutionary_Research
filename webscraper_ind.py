@@ -150,13 +150,11 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
                 
                 
                 #check to make sure starting residue if not start at first residue number 
-                elif parts and len(true_idx) == 0: 
-                    
-                    if int(parts[5]) > int(start):
-                        filtered.append(line)
-                        writing = True
-                        true_idx.append(parts[5])
-                        correct_idx = False
+                elif parts and len(true_idx) == 0 and int(parts[5]) > int(start):
+                    filtered.append(line)
+                    writing = True
+                    true_idx.append(parts[5])
+                    correct_idx = False
                     
                     
                 elif parts and parts[5] and parts[5] == start:
@@ -168,12 +166,14 @@ def clean_for_seq(pdb_chain_specific_location, seq_range):
                 
                 elif parts and parts[5] and parts[5] == end: 
                     filtered.append(line)
-                    writing = False        
+                    writing = False
+                    last_idx = parts[5]        
 
                 
                 elif writing: 
                     filtered.append(line)
                     last_idx = parts[5]
+                    
                     
                     
             print(f'Successfully opened file at {pdb_chain_specific_location}')
