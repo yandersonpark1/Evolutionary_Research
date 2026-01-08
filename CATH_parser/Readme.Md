@@ -1,0 +1,1 @@
+This folder contains the original creation of the CATH datbase into a dictionary to be used for organization
