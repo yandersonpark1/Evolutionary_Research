@@ -1,5 +1,18 @@
+1.10.10.41 
+21 Initial Domains 
+16 Total used pdbs (domains)
+5 PDBs > 3.0 angstroms resolution 
+
+1k4s, 232-319:A 3.20 angstroms
+1lpq, 232-319:A 3.14 angstroms
+1nh3, 236-319:A 3.10 angstroms
+1r49, 232-319:A 3.13 angstorms
+1tl8, 232-319:A 3.10 angstroms
+
+
 3.10.50.20: 
-8 PDBs
+8 Initial domains
+6 Total Used PDBs (domains)
 2 PDBs > 3.0 angstroms resolution 
 
 1e44 - 2.40 angstroms 
@@ -8,15 +21,22 @@
 3eip - 1.80 angstroms 
 4udm - 2.96 angstroms 
 
-27
-1grj, 76-158:A
-2etn, 78-151:A
-2etn, 78-151:B
-2etn, 78-151:C
-2eul, 78-151:A
-2eul, 78-151:B
-2eul, 78-151:C
-2eul, 78-151:D
+
+3.10.50.30: 
+
+27 Initial domains 
+3 PDBS (domains) > 3.0 angstroms 
+
+
+
+1grj, 76-158:A - 2.20 angstroms 
+2etn, 78-151:A - 3.30 angstroms 
+2etn, 78-151:B - 3.30 angstroms  
+2etn, 78-151:C - 3.30 angstroms  
+2eul, 78-151:A - 2.40 angstroms
+2eul, 78-151:B - 2.40 angstroms 
+2eul, 78-151:C - 2.40 angstroms 
+2eul, 78-151:D - 2.40 angstroms
 2f23, 78-151:A
 2f23, 78-151:B
 2p4v, 77-156:A
